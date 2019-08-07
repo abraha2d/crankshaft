@@ -244,12 +244,12 @@ if [ ! -f /etc/cs_backup_restore_done ]; then
             # add default modules
             echo "bcm2835_wdt" >> /etc/modules
 
-            # check for lightsnsor (i2c)
+            # check for lightsensor (i2c)
             if [ -f /etc/cs_lightsensor ]; then
                 crankshaft lightsensor enable
             fi
 
-            # Enable splash dirung boot
+            # Enable splash during boot
             mount -o remount,rw /boot
             sed -i 's/splash //' /boot/cmdline.txt
             sed -i 's/$/ splash/' /boot/cmdline.txt
@@ -270,7 +270,7 @@ if [ ! -f /etc/cs_backup_restore_done ]; then
             log_echo "No Backup found on $DEVICE (${LABEL}) - skip ..."
         fi
     done
-    # Enable splash dirung boot
+    # Enable splash during boot
     mount -o remount,rw /boot
     sed -i 's/splash //' /boot/cmdline.txt
     sed -i 's/$/ splash/' /boot/cmdline.txt

@@ -9,10 +9,10 @@ sudo dpkg-reconfigure --frontend=noninteractive locales
 sudo update-locale LANG=$SETLANG.UTF-8
 
 #link graphics libs
-ln -s /opt/vc/lib/libbrcmEGL.so /usr/lib/arm-linux-gnueabihf/libEGL.so
-ln -s /opt/vc/lib/libbrcmGLESv2.so /usr/lib/arm-linux-gnueabihf/libGLESv2.so
-ln -s /opt/vc/lib/libbrcmOpenVG.so /usr/lib/arm-linux-gnueabihf/libOpenVG.so
-ln -s /opt/vc/lib/libbrcmWFC.so /usr/lib/arm-linux-gnueabihf/libWFC.so
+ln -fs /opt/vc/lib/libbrcmEGL.so /usr/lib/arm-linux-gnueabihf/libEGL.so
+ln -fs /opt/vc/lib/libbrcmGLESv2.so /usr/lib/arm-linux-gnueabihf/libGLESv2.so
+ln -fs /opt/vc/lib/libbrcmOpenVG.so /usr/lib/arm-linux-gnueabihf/libOpenVG.so
+ln -fs /opt/vc/lib/libbrcmWFC.so /usr/lib/arm-linux-gnueabihf/libWFC.so
 
 # we don't need to resize the root part
 sed -i 's/ init\=.*$//' /boot/cmdline.txt
@@ -43,27 +43,27 @@ echo "overscan_scale=1" >> /boot/config.txt
 cat /etc/pulse/csng_daemon.conf >> /etc/pulse/daemon.conf
 cat /etc/pulse/csng_default.pa > /etc/pulse/default.pa
 cat /etc/pulse/csng_system.pa > /etc/pulse/system.pa
-rm /etc/pulse/csng_daemon.conf
-rm /etc/pulse/csng_default.pa
-rm /etc/pulse/csng_system.pa
+rm -f /etc/pulse/csng_daemon.conf
+rm -f /etc/pulse/csng_default.pa
+rm -f /etc/pulse/csng_system.pa
 
 # wallaper's
-ln -s /boot/crankshaft/wallpaper.png /home/pi/wallpaper.png
-ln -s /boot/crankshaft/wallpaper-night.png /home/pi/wallpaper-night.png
-ln -s /boot/crankshaft/wallpaper-classic.png /home/pi/wallpaper-classic.png
-ln -s /boot/crankshaft/wallpaper-classic-night.png /home/pi/wallpaper-classic-night.png
-ln -s /boot/crankshaft/wallpaper-eq.png /home/pi/wallpaper-eq.png
+ln -fs /boot/crankshaft/wallpaper.png /home/pi/wallpaper.png
+ln -fs /boot/crankshaft/wallpaper-night.png /home/pi/wallpaper-night.png
+ln -fs /boot/crankshaft/wallpaper-classic.png /home/pi/wallpaper-classic.png
+ln -fs /boot/crankshaft/wallpaper-classic-night.png /home/pi/wallpaper-classic-night.png
+ln -fs /boot/crankshaft/wallpaper-eq.png /home/pi/wallpaper-eq.png
 
 # custom plymouth
-ln -s /boot/crankshaft/splash.png /usr/share/plymouth/themes/custom/splash.png
-ln -s /boot/crankshaft/shutdown.png /usr/share/plymouth/themes/custom/shutdown.png
+ln -fs /boot/crankshaft/splash.png /usr/share/plymouth/themes/custom/splash.png
+ln -fs /boot/crankshaft/shutdown.png /usr/share/plymouth/themes/custom/shutdown.png
 
 # custom usbcamera-overlay
-ln -s /boot/crankshaft/usbcamera-overlay.png /opt/crankshaft/cam_overlay/overlay.png
+ln -fs /boot/crankshaft/usbcamera-overlay.png /opt/crankshaft/cam_overlay/overlay.png
 
 # triggerhappy
 sed -i 's/user nobody/user pi/' /lib/systemd/system/triggerhappy.service
-ln -s /boot/crankshaft/triggerhappy.conf /etc/triggerhappy/triggers.d/crankshaft.conf
+ln -fs /boot/crankshaft/triggerhappy.conf /etc/triggerhappy/triggers.d/crankshaft.conf
 
 # set the hostname
 echo "CRANKSHAFT-NG" > /etc/hostname
@@ -130,24 +130,24 @@ systemctl disable systemd-fsck@.service
 systemctl disable smbd.service
 systemctl disable nmbd.service
 
-rm /lib/systemd/system/systemd-rfkill.service
-rm /lib/systemd/system/systemd-rfkill.socket
-rm /lib/systemd/system/apt-daily.timer
-rm /lib/systemd/system/apt-daily.service
-rm /lib/systemd/system/apt-daily-upgrade.timer
-rm /lib/systemd/system/apt-daily-upgrade.service
-rm /etc/systemd/system/timers.target.wants/apt-daily.timer
-rm /etc/systemd/system/timers.target.wants/apt-daily-upgrade.timer
-rm /lib/systemd/system/timers.target.wants/systemd-tmpfiles-clean.timer
-rm /lib/systemd/system/alsa-restore.service
-rm /lib/systemd/system/alsa-state.service
-rm /lib/systemd/system/basic.target.wants/alsa-restore.service
-rm /lib/systemd/system/basic.target.wants/alsa-state.service
-rm /lib/systemd/system/apply_noobs_os_config.service
-rm /lib/systemd/system/wifi-country.service
-rm /lib/systemd/system/regenerate_ssh_host_keys.service
-rm /lib/udev/rules.d/90-alsa-restore.rules
-rm /lib/dhcpcd/dhcpcd-hooks/50-ntp.conf
+rm -f /lib/systemd/system/systemd-rfkill.service
+rm -f /lib/systemd/system/systemd-rfkill.socket
+rm -f /lib/systemd/system/apt-daily.timer
+rm -f /lib/systemd/system/apt-daily.service
+rm -f /lib/systemd/system/apt-daily-upgrade.timer
+rm -f /lib/systemd/system/apt-daily-upgrade.service
+rm -f /etc/systemd/system/timers.target.wants/apt-daily.timer
+rm -f /etc/systemd/system/timers.target.wants/apt-daily-upgrade.timer
+rm -f /lib/systemd/system/timers.target.wants/systemd-tmpfiles-clean.timer
+rm -f /lib/systemd/system/alsa-restore.service
+rm -f /lib/systemd/system/alsa-state.service
+rm -f /lib/systemd/system/basic.target.wants/alsa-restore.service
+rm -f /lib/systemd/system/basic.target.wants/alsa-state.service
+rm -f /lib/systemd/system/apply_noobs_os_config.service
+rm -f /lib/systemd/system/wifi-country.service
+rm -f /lib/systemd/system/regenerate_ssh_host_keys.service
+rm -f /lib/udev/rules.d/90-alsa-restore.rules
+rm -f /lib/dhcpcd/dhcpcd-hooks/50-ntp.conf
 
 #systemctl daemon-relaod
 
@@ -183,15 +183,15 @@ cp /usr/lib/os-release /usr/lib/os-release.bak
 sed -i '/PRETTY_NAME=/d' /usr/lib/os-release.bak
 echo "PRETTY_NAME=$STRING" > /usr/lib/os-release
 cat /usr/lib/os-release.bak >> /usr/lib/os-release
-rm /usr/lib/os-release.bak
+rm -f /usr/lib/os-release.bak
 echo "$STRING" > /etc/issue
 echo "" >> /etc/issue
 echo "$STRING" > /etc/issue.net
 echo "" >> /etc/issue.net
 
 # wifi
-rm /etc/wpa_supplicant/wpa_supplicant.conf
-ln -s /tmp/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
+rm -f /etc/wpa_supplicant/wpa_supplicant.conf
+ln -fs /tmp/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
 
 # Enable systemd timesync
 sed -i 's/#NTP=.*/NTP=0.debian.pool.ntp.org 1.debian.pool.ntp.org 2.debian.pool.ntp.org 3.debian.pool.ntp.org/g' /etc/systemd/timesyncd.conf
@@ -256,7 +256,7 @@ echo "autospawn = no" >> /etc/pulse/client.conf
 sed -i 's/^MountFlags=.*/MountFlags=shared/' /lib/systemd/system/systemd-udevd.service
 
 # link csmt
-ln -s /usr/local/bin/crankshaft /usr/local/bin/csmt
+ln -fs /usr/local/bin/crankshaft /usr/local/bin/csmt
 
 # Set path for rsyslogd
 sed -i 's/\$WorkDirectory \/var\/spool\/rsyslog/\$WorkDirectory \/var\/spool/' /etc/rsyslog.conf
